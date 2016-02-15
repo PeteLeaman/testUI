@@ -105,14 +105,14 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 
 		// background sprite stuff
 		batch = new SpriteBatch();
-		sprite = new Sprite(new Texture(Gdx.files.internal("assets/showcase.psd")));
+		sprite = new Sprite(new Texture(Gdx.files.internal("core\\assets\\showcase.psd")));
 		sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		// input stuff
 		InputMultiplexer im = new InputMultiplexer(stage,this); // takes both and treats as one input processor, order passed in = order events handled (stage first, UI first)
 		Gdx.input.setInputProcessor(im);
 	}
-
+//test
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
