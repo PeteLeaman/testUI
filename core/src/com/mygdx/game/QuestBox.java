@@ -40,6 +40,9 @@ public class QuestBox extends Container {
         // create the scroll pane
         scrollPane = new ScrollPane(descriptionLabel, skin);
 
+        scrollPane.getStyle().vScroll.setLeftWidth(10); //.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+        scrollPane.setStyle(new ScrollPane.ScrollPaneStyle());
+
         // add the description label (in scroll pane) and buttons to the quest box
         dialog.getContentTable().add(scrollPane).size(getMaxWidth() - 20, getMaxHeight() - 100); // use the table cell to change size of label
         dialog.getButtonTable().add(acceptButton).size(100, 40);
@@ -69,7 +72,7 @@ public class QuestBox extends Container {
                                   }
         );
 
-
+        this.setActor(dialog);
     }
 
 

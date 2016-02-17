@@ -30,69 +30,24 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 		// setting up skin & stage
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
 		stage = new Stage(new ScreenViewport());
+		//stage.getViewport().update(1000, 1000, true);
 
 		// setting up main UI table
 		table = new Table();
 		table.setWidth(stage.getWidth());
 		table.align(Align.center | Align.top);
 		table.setPosition(0, Gdx.graphics.getHeight());
+		//table.setFillParent(true);
 
-		final QuestBox questContainer = new QuestBox(questTitle, questDescription, skin);
-//
-//		// setting up quest UI
-//		final QuestBoxSimp questBoxSimp = new QuestBoxSimp("Urgent Repairs Needed in Isle 5", skin);
-//
-//		final TextButton acceptButton = new TextButton("Accept", skin, "default");
-//		final TextButton declineButton = new TextButton("Decline", skin, "default");
-//
-//		// the label for the quest description
-//		final Label questText = new Label("quest description", skin);
-//		questText.setText("After your ship was attacked by pirates, you crash landed on the planet Krakon. Several of your systems were critically damaged in the crash, making the ship unflyable. You will need to find the right parts to repair it and get it working again. Thank the stars you landed near the recently opened Plume Outpost (and not the recently destroyed Blume Outpost 20 miles east of it)");
-//		questText.setWrap(true);
-//
-//		// put quest description into a scroll pane so you can scroll down if too big
-//		ScrollPane questTextScroll = new ScrollPane(questText, skin);
-//
-//		// put quest box inside a container so we can resize it easier
-//		questContainer = new Container(questBoxSimp);
-//		questContainer.size(250, 350);
-//
-//		// add the description and buttons to the quest box
-//		questBoxSimp.getContentTable().add(questTextScroll).size(questContainer.getMaxWidth() - 20, questContainer.getMaxHeight() - 100); // use the table cell to change size of label
-//		questBoxSimp.getButtonTable().add(acceptButton).size(100, 40);
-//		questBoxSimp.getButtonTable().add(declineButton).size(100, 40);
-//		questBoxSimp.getButtonTable().padBottom(10);
-//
-//		// alignment control for label
-//		questText.setAlignment(Align.topLeft);
-//
-//		// alignment control for button (temp)
-//		questBoxSimp.getButtonTable().getCell(acceptButton).padRight(10);
-//		questBoxSimp.getButtonTable().getCell(declineButton).padLeft(10);
-//
-//		// how the decline and accept buttons on the quest box respond
-//		acceptButton.addListener(new ClickListener() {
-//									 @Override
-//									 public void clicked(InputEvent event, float x, float y) {
-//										 System.out.println("label width: " + questText.getWidth());
-//									 }
-//								 }
-//		);
-//		declineButton.addListener(new ClickListener() {
-//									  @Override
-//									  public void clicked(InputEvent event, float x, float y) {
-//
-//									  }
-//								  }
-//		);
+		final QuestBox testBox = new QuestBox(questTitle, questDescription, skin);
 
 		// test button for now to bring up the questbox
 		final TextButton testButton = new TextButton("NPC offering Quest", skin, "default");
 		testButton.addListener(new ClickListener() {
 								   @Override
 								   public void clicked(InputEvent event, float x, float y) {
-									   table.add(questContainer);
-
+									   table.add(testBox);
+									   System.out.println(testBox.getActor());
 								   }
 							   }
 		);
@@ -124,6 +79,11 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
 	}
+
+	public void resize (int width, int height) {
+		stage.getViewport().update(width, height, true);
+	}
+
 
 	/*
 	due to it being an input processor all of these should be implemented
