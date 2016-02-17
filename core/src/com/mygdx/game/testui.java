@@ -13,7 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class testui extends ApplicationAdapter implements InputProcessor {
 	private Stage stage;
@@ -29,12 +31,14 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 	public void create() {
 		// setting up skin & stage
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
-		stage = new Stage(new ScreenViewport());
+		stage = new Stage(new ScreenViewport()); // there are different types of viewports need to see which we need
+		//stage = new Stage(new FitViewport(1080, 1080));
 		//stage.getViewport().update(1000, 1000, true);
 
 		// setting up main UI table
 		table = new Table();
 		table.setWidth(stage.getWidth());
+		//table.setHeight(stage.getHeight());
 		table.align(Align.center | Align.top);
 		table.setPosition(0, Gdx.graphics.getHeight());
 		//table.setFillParent(true);
@@ -53,7 +57,7 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 		);
 
 		// adding all main UI elements to table
-		table.add(testButton).padTop(30).padBottom(3);
+		table.add(testButton).padTop(200).padBottom(3);
 
 		// adding main UI table to stage
 		stage.addActor(table);
@@ -80,8 +84,11 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 		stage.draw();
 	}
 
+	@Override
 	public void resize (int width, int height) {
 		stage.getViewport().update(width, height, true);
+		table.setWidth(stage.getWidth());
+		//table.setHeight(stage.getHeight());
 	}
 
 

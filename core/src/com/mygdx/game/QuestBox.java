@@ -60,16 +60,16 @@ public class QuestBox extends Container {
         acceptButton.addListener(new ClickListener() {
                                      @Override
                                      public void clicked(InputEvent event, float x, float y) {
-
+                                         System.out.println("accept button pressed");
                                      }
                                  }
         );
         declineButton.addListener(new ClickListener() {
-                                      @Override
-                                      public void clicked(InputEvent event, float x, float y) {
-
-                                      }
-                                  }
+                                     @Override
+                                     public void clicked(InputEvent event, float x, float y) {
+                                         System.out.println("decline button pressed");
+                                     }
+                                 }
         );
 
         this.setActor(dialog);

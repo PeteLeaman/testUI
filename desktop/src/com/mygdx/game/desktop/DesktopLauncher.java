@@ -7,6 +7,9 @@ import com.mygdx.game.testui;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.resizable = true;
+		config.width = 750;
+		config.height = 750;
 		new LwjglApplication(new testui(), config);
 	}
 }
