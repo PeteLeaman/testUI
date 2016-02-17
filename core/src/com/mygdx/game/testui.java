@@ -63,11 +63,11 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 		);
 
 		// exits the fullscreen so you can close window
-		final TextButton exitButton = new TextButton(" go to windowed mode ", skin, "default");
+		final TextButton exitButton = new TextButton(" exit ", skin, "default");
 		exitButton.addListener(new ClickListener() {
 								   @Override
 								   public void clicked(InputEvent event, float x, float y) {
-									   Gdx.graphics.setWindowedMode(750, 750);
+									   Gdx.app.exit();
 								   }
 							   }
 		);
@@ -81,7 +81,7 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 
 		// background sprite stuff
 		batch = new SpriteBatch();
-		sprite = new Sprite(new Texture(Gdx.files.internal("assets/showcase.psd")));
+		sprite = new Sprite(new Texture(Gdx.files.internal("core\\assets\\showcase.psd")));
 		sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		// input stuff
