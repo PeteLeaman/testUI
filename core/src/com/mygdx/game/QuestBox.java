@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -44,7 +45,7 @@ public class QuestBox extends Container {
         scrollPane.setStyle(new ScrollPane.ScrollPaneStyle());
 
         // add the description label (in scroll pane) and buttons to the quest box
-        dialog.getContentTable().add(scrollPane).size(getMaxWidth() - 20, getMaxHeight() - 100); // use the table cell to change size of label
+        dialog.getContentTable().add(scrollPane).size(getMaxWidth() - 20, getMaxHeight() - 90); // use the table cell to change size of label
         dialog.getButtonTable().add(acceptButton).size(100, 40);
         dialog.getButtonTable().add(declineButton).size(100, 40);
         dialog.getButtonTable().padBottom(10);
@@ -68,6 +69,7 @@ public class QuestBox extends Container {
                                      @Override
                                      public void clicked(InputEvent event, float x, float y) {
                                          System.out.println("decline button pressed");
+                                         Gdx.graphics.setWindowedMode(750, 750);
                                      }
                                  }
         );

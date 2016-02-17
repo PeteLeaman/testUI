@@ -23,17 +23,23 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 	private Table table;
 	private SpriteBatch batch;
 	private Sprite sprite;
+	private int appHeight, appWidth;
 
 	private String questTitle = "Urgent Repairs Needed in Isle 5";
-	private String questDescription = "After your ship was attacked by pirates, you crash landed on the planet Krakon. Several of your systems were critically damaged in the crash, making the ship unflyable. You will need to find the right parts to repair it and get it working again. Thank the stars you landed near the recently opened Plume Outpost (and not the recently destroyed Blume Outpost 20 miles east of it)";
+	private String questDescription = "After your ship was attacked by pirates, you crash landed on the planet Krakon.\nSeveral of your systems were critically damaged in the crash, making the ship unflyable. You will need to find the right parts to repair it and get it working again.\nThank the stars you landed near the recently opened Plume Outpost (and not the recently destroyed Blume Outpost 20 miles east of it).";
+
+	public testui(int appWidth, int appHeight) {
+		super();
+		this.appWidth = appWidth;
+		this.appHeight = appHeight;
+	}
 
 	@Override
 	public void create() {
 		// setting up skin & stage
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
 		stage = new Stage(new ScreenViewport()); // there are different types of viewports need to see which we need
-		//stage = new Stage(new FitViewport(1080, 1080));
-		//stage.getViewport().update(1000, 1000, true);
+		//stage = new Stage(new FitViewport(appWidth, appHeight));
 
 		// setting up main UI table
 		table = new Table();
@@ -46,7 +52,7 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 		final QuestBox testBox = new QuestBox(questTitle, questDescription, skin);
 
 		// test button for now to bring up the questbox
-		final TextButton testButton = new TextButton("NPC offering Quest", skin, "default");
+		final TextButton testButton = new TextButton(" open quest box ", skin, "default");
 		testButton.addListener(new ClickListener() {
 								   @Override
 								   public void clicked(InputEvent event, float x, float y) {
@@ -56,8 +62,19 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 							   }
 		);
 
+		// exits the fullscreen so you can close window
+		final TextButton exitButton = new TextButton(" go to windowed mode ", skin, "default");
+		exitButton.addListener(new ClickListener() {
+								   @Override
+								   public void clicked(InputEvent event, float x, float y) {
+									   Gdx.graphics.setWindowedMode(750, 750);
+								   }
+							   }
+		);
+
 		// adding all main UI elements to table
-		table.add(testButton).padTop(200).padBottom(3);
+		table.add(testButton).padTop(200);
+		table.add(exitButton).padTop(200).padLeft(100);
 
 		// adding main UI table to stage
 		stage.addActor(table);
@@ -71,7 +88,7 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 		InputMultiplexer im = new InputMultiplexer(stage,this); // takes both and treats as one input processor, order passed in = order events handled (stage first, UI first)
 		Gdx.input.setInputProcessor(im);
 	}
-//test
+
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -114,7 +131,7 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		return false; // false if you want the event to be continued, e.g. you want both the UI and base layer to handle it
+		return false;
 	}
 
 	@Override
