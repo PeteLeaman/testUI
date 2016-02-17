@@ -105,7 +105,7 @@ public class testui extends ApplicationAdapter implements InputProcessor {
 
 		// background sprite stuff
 		batch = new SpriteBatch();
-		sprite = new Sprite(new Texture(Gdx.files.internal("core\\assets\\showcase.psd")));
+		sprite = new Sprite(new Texture(Gdx.files.internal("assets/showcase.psd")));
 		sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		// input stuff
